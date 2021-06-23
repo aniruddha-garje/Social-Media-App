@@ -11,7 +11,9 @@ const keys = require('./config/keys.js');
 const User = require('./models/user');
 const mongoose = require('mongoose');
 
+//Link Passports to the server
 require('./passport/google-passport');
+require('./passport/facebook-passport');
 
 const session = require("express-session");
 const bodyParser = require("body-parser");
@@ -85,6 +87,20 @@ app.get('/auth/google/callback',
         // Successful authentication, redirect home.
         res.redirect('/profile');
     });
+
+// FACEBOOK AUTH ROUTE
+app.get('/auth/facebook',
+    passport.authenticate('facebook'));
+
+app.get('/auth/facebook/callback',
+    passport.authenticate('facebook', {
+        failureRedirect: '/'
+    }),
+    (req, res) => {
+        // Successful authentication, redirect home.
+        res.redirect('/profile');
+    });
+
 app.get('/profile', (req, res) => {
     User.findById({_id: req.user._id})
     .then((user) => {
