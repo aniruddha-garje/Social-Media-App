@@ -15,6 +15,12 @@ const mongoose = require('mongoose');
 require('./passport/google-passport');
 require('./passport/facebook-passport');
 
+//Link Helpers
+const{
+	ensureAuthentication,
+	ensureGuest
+} = require('./helpers/auth');
+
 const session = require("express-session");
 const bodyParser = require("body-parser");
 const cookieParser = require('cookie-parser');
@@ -67,7 +73,7 @@ app.use(express.static(__dirname + '/client' ));
 //set Port
 const port = process.env.PORT ||  3000;
 
-app.get('/',(req,res) =>{
+app.get('/',ensureGuest,(req,res) =>{
 	res.render('home');
 });
 
@@ -101,7 +107,7 @@ app.get('/auth/facebook/callback',
         res.redirect('/profile');
     });
 
-app.get('/profile', (req, res) => {
+app.get('/profile', ensureAuthentication, (req, res) => {
     User.findById({_id: req.user._id})
     .then((user) => {
         res.render('profile', {
@@ -109,6 +115,20 @@ app.get('/profile', (req, res) => {
         });
     })
 });
+
+//Handle Email post here
+app.post('/addEmail',(req,res)=>{
+		const email = req.body.email;
+		User.findById({_id: req.user._id})
+		.then((user)=>{
+			user.email = email;
+			user.save()
+			.then(() => {
+				res.redirect('/profile');
+			});
+		});
+}) ;
+
 
 //Handle user logout route
 app.get('/logout',(req,res)=>{
