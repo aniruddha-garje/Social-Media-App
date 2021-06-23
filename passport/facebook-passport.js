@@ -32,7 +32,6 @@ passport.use(new FacebookStrategy({
                     fullname: profile.displayName,
                     firstname: profile.name.givenName,
                     lastname: profile.name.familyName,
-                    
                     image: `https://graph.facebook.com/${profile.id}/picture?type=large`
                 }
                 new User(newUser).save()
