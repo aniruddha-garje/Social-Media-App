@@ -64,5 +64,9 @@ h1{
   margin-bottom: 20px;
 }
 .red{
-	color: green;
+	color: red;
+}
+#comment-user-picture{
+	width: 65px;
+	height : auto;
 }

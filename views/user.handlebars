@@ -1,9 +1,36 @@
 <div class="container">
-    <div class="card" style="width: 18rem;">
-        <img class="card-img-top" src="{{user.image}}" alt="Card image cap">
-        <div class="card-body">
-            <h5 class="card-title">{{user.fullname}}</h5>
-            <p class="card-text">{{user.location}}</p>
+    <div class="row">
+        <div class="col-sm-4">
+            <div class="card" style="width: 18rem;">
+                <img class="card-img-top" src="{{user.image}}" alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title">{{user.fullname}}</h5>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <h1>Profile</h1>
+            <p>Firstname: <span class="red">{{user.firstname}}</span></p>
+            <p>Lastname: <span class="red">{{user.lastname}}</span></p>
+            <p>Email: <span class="red">{{user.email}}</span></p>
+            
         </div>
     </div>
+    <div class="conatiner">
+    <h1>Public Posts</h1>
+    {{#each posts}}
+    <div class="media">
+        <img id="comment-user-picture" class="mr-3" src="{{user.image}}">
+        <div class="media-body">
+            <h4 class="mt-0">{{user.fullname}} <small><i class="fa fa-globe"></i></small></h4>
+            <h5>{{title}}</h5>
+           <p>{{body}}</p>
+           <small>{{date}}</small>
+        </div>
+    </div>
+    <hr>
+    {{else}}
+    <p>User does not have any posts ...</p>
+    {{/each}}
+</div>
 </div>
