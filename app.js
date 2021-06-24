@@ -115,6 +115,7 @@ app.get('/auth/facebook/callback',
 app.get('/profile', ensureAuthentication, (req, res) => {
     Post.find({user: req.user._id})
    .populate('user')
+   .sort({date: 'desc'})
    .then((posts) => {
        res.render('profile', {
            posts:posts
