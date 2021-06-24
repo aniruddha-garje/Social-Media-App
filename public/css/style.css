@@ -52,6 +52,17 @@ h1{
 .col-sm-4{
 	margin-bottom: 20px;
 }
+.post-user-pic{
+	width: 100px;
+	height: auto;
+	margin-bottom: 20px;
+}
 
+.media-body{
+	 
 
-
+  margin-bottom: 20px;
+}
+.red{
+	color: green;
+}
