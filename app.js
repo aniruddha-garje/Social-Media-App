@@ -129,6 +129,18 @@ app.post('/addEmail',(req,res)=>{
 		});
 }) ;
 
+//HANDLE Phone Post Route
+app.post('/addPhone',(req,res)=>{
+	const phone = req.body.phone;
+	User.findById({_id: req.user._id})
+		.then((user)=>{
+			user.phone = phone;
+			user.save()
+			.then(() => {
+				res.redirect('/profile');
+			});
+		});
+});
 
 //Handle user logout route
 app.get('/logout',(req,res)=>{
