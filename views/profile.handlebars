@@ -16,8 +16,9 @@
             {{else}}
             <form action="/addEmail" method="POST">
             <input type="text" name="email" class="form-control" 
-            placeholder="Enter email address">
-            <button type="submit" class="btn btn-danger" color: "#4aa1f3">Save</button>
+            placeholder="Enter email address" required>
+            <button type="submit" class="btn btn-primary mb-2">
+                    <i class="fa fa-check"></i></button>
             </form>
             {{/if}}
             {{#if user.phone}}
@@ -26,7 +27,7 @@
             <form action="/addPhone" method="POST" class="form-inline">
                 <div class="form-group mx-sm-3 mb-2">
                     <input type="number" name="phone" class="form-control" 
-                    placeholder="Enter phone number">
+                    placeholder="Enter phone number" required>
                 </div>
                 <button type="submit" class="btn btn-primary mb-2">
                     <i class="fa fa-check"></i></button>
