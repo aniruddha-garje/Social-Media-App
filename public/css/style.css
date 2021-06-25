@@ -9,6 +9,7 @@ body {
 	vertical-align: 90px;
 }
 #homepage{
+	margin-top: 20px;
 	text-align:center;
 	 display: flex;
     align-items: center;
